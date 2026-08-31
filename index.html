@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioVault Network ($BVT) - Web3 Security</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold text-blue-500 tracking-wider">
+            <i class="fa-solid fa-fingerprint mr-2"></i>BioVault ($BVT)
+        </div>
+        <div class="space-x-4 hidden md:flex">
+            <a href="#features" class="hover:text-blue-400 transition">Features</a>
+            <a href="#sdk" class="hover:text-blue-400 transition">Developer SDK</a>
+            <a href="#roadmap" class="hover:text-blue-400 transition">Roadmap</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-6 py-20 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+            Next-Gen <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Web3 Security</span>
+        </h1>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            Pioneering Account Abstraction and Biometric Authentication for decentralized ecosystems. Secure your digital assets with your unique identity.
+        </p>
+        
+        <!-- Smart Contract Copy Box -->
+        <div class="bg-gray-800 p-4 rounded-lg inline-block border border-gray-700 mb-8">
+            <span class="text-gray-400 mr-2">Contract:</span>
+            <span class="font-mono text-blue-300 mr-4 tracking-tighter" id="contractAddress">0x1234567890abcdef1234567890abcdef12345678</span>
+            <button id="copyBtn" onclick="copyAddress()" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-semibold transition">
+                <i class="fa-regular fa-copy mr-1"></i> Copy
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="bg-gray-800 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Core Technologies</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 bg-gray-900 rounded-xl border border-gray-700">
+                    <i class="fa-solid fa-face-scan text-4xl text-purple-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-3">Biometric Authentication</h3>
+                    <p class="text-gray-400">Eliminate seed phrases. Use facial recognition and fingerprint data to seamlessly approve transactions and manage your decentralized identity.</p>
+                </div>
+                <div class="p-8 bg-gray-900 rounded-xl border border-gray-700">
+                    <i class="fa-solid fa-link-slash text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-3">Account Abstraction</h3>
+                    <p class="text-gray-400">Smart contract wallets designed for the future. Pay gas fees in $BVT, automate recurring payments, and recover accounts effortlessly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDK Snippet Section -->
+    <section id="sdk" class="container mx-auto px-6 py-20">
+        <h2 class="text-3xl font-bold text-center mb-8">Developer SDK integration</h2>
+        <div class="bg-gray-950 rounded-xl p-6 shadow-2xl border border-gray-800 max-w-3xl mx-auto overflow-x-auto">
+<pre><code class="text-green-400 font-mono text-sm">import { BioVaultAuth } from '@biovault/sdk';
+
+// Initialize Account Abstraction Wallet
+const wallet = new BioVaultAuth({
+    network: 'mainnet',
+    token: 'BVT'
+});
+
+// Prompt Biometric Signature
+async function signTransaction(txData) {
+    const signature = await wallet.requestBiometrics();
+    if (signature.verified) {
+        return await wallet.execute(txData);
+    }
+}
+</code></pre>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="bg-gray-800 py-20">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold text-center mb-12">Project Roadmap</h2>
+            <div class="space-y-6 border-l-2 border-blue-500 pl-6 ml-4">
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400">Phase 1: Foundation</h3>
+                    <p class="text-gray-400">$BVT Token Generation Event, Smart Contract Audit, and Web3 Community Building.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-purple-400">Phase 2: Account Abstraction</h3>
+                    <p class="text-gray-400">Release of the Alpha Smart Contract Wallet and Gasless Transaction Relayer.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-green-400">Phase 3: Biometric Integration</h3>
+                    <p class="text-gray-400">Mobile SDK launch for iOS and Android hardware-level biometric signatures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-500 border-t border-gray-800">
+        <p>&copy; 2026 BioVault Network. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function copyAddress() {
+            const address = document.getElementById("contractAddress").innerText;
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = document.getElementById("copyBtn");
+                btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Copied!';
+                btn.classList.replace("bg-blue-600", "bg-green-600");
+                btn.classList.replace("hover:bg-blue-700", "hover:bg-green-700");
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy';
+                    btn.classList.replace("bg-green-600", "bg-blue-600");
+                    btn.classList.replace("hover:bg-green-700", "hover:bg-blue-700");
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
